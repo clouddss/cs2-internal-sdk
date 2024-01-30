@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="sdk">
+      <UniqueIdentifier>{c9b3a16f-d44c-4de2-b2a3-b0b2bbbf48f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\classes">
+      <UniqueIdentifier>{ab6ee54a-51b4-4907-af79-c614888de0de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\helpers">
+      <UniqueIdentifier>{6701b1ae-6870-4e13-9684-63164f8aa6e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\math">
+      <UniqueIdentifier>{a42b14bb-c064-4bc4-ab30-157879b35527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\interfaces">
+      <UniqueIdentifier>{8d35a5ef-b844-4ff8-8b99-3815d6963d7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\hooking">
+      <UniqueIdentifier>{f6cf6b5b-aaec-4cea-b32e-5971754be6d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\hooking\minhook">
+      <UniqueIdentifier>{867b9848-d467-4fc1-8268-f004853a419f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk\hooking\minhook\hde">
+      <UniqueIdentifier>{73f3fb94-f2b9-4e53-8320-b9851a791cf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooks">
+      <UniqueIdentifier>{e018ee6c-82f7-4e7a-a0f9-372b266f6aa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooks\functions">
+      <UniqueIdentifier>{dd4269f1-5a17-49f6-9072-032ced46c8d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty">
+      <UniqueIdentifier>{d7c987c8-d617-4171-8743-daca1b52155b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty\imgui">
+      <UniqueIdentifier>{7b9e56cf-4065-4cb3-9b93-8c170f6ccab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="menu">
+      <UniqueIdentifier>{1835228c-b970-45fa-9e0b-5a632923ed12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="settings">
+      <UniqueIdentifier>{198305ad-65c6-4b18-86a7-7d20d90c2f36}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sdk\interfaces\GameEntitySystem.h">
+      <Filter>sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\IMemAlloc.h">
+      <Filter>sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\SchemaSystem.h">
+      <Filter>sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\IVEngineClient.h">
+      <Filter>sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\CGameResourceService.h">
+      <Filter>sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CBaseEntity.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CBasePlayer.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\sdk.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\netvars.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\console.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\CUtlMap.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\CUtlMemory.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\CUtlString.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\CUtlSymbolLarge.hpp">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\CUtlTSHash.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\CUtlVector.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\dynamic_module.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\fnv.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\importer.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\vfunc.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CBasePlayerWeapon.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CCSGameRulesProxy.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CEntityIdentity.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CEntityInstance.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CGameSceneNode.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CPlayerWeaponServices.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\hooking\minhook\hde\hde32.h">
+      <Filter>sdk\hooking\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\hooking\minhook\hde\hde64.h">
+      <Filter>sdk\hooking\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\hooking\minhook\hde\pstdint.h">
+      <Filter>sdk\hooking\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\hooking\minhook\hde\table32.h">
+      <Filter>sdk\hooking\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\hooking\minhook\hde\table64.h">
+      <Filter>sdk\hooking\minhook\hde</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\hooking\minhook\buffer.h">
+      <Filter>sdk\hooking\minhook</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\hooking\minhook\MinHook.h">
+      <Filter>sdk\hooking\minhook</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\hooking\minhook\trampoline.h">
+      <Filter>sdk\hooking\minhook</Filter>
+    </ClInclude>
+    <ClInclude Include="hooks\hooks.h">
+      <Filter>hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\math\Vector.h">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CHandle.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\modules.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\CCSPlayerPawn.h">
+      <Filter>sdk\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\interfaces\CSGOInput.h">
+      <Filter>sdk\interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\math\Viewmatrix.h">
+      <Filter>sdk\math</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imconfig.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imgui.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\backends\imgui_impl_dx11.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\backends\imgui_impl_win32.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imgui_internal.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imstb_rectpack.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imstb_textedit.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\imgui\imstb_truetype.h">
+      <Filter>thirdparty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="render\menu\main_window.h">
+      <Filter>menu</Filter>
+    </ClInclude>
+    <ClInclude Include="settings\settings.h">
+      <Filter>settings</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\helpers\entity_data.h">
+      <Filter>sdk\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="features\visuals\visuals.h" />
+    <ClInclude Include="sdk\classes\CSkeletonInstance.h" />
+    <ClInclude Include="sdk\classes\CBoneSystem.h" />
+    <ClInclude Include="sdk\helpers\BitFlag.h" />
+    <ClInclude Include="thirdparty\imgui\imgui_freetype.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sdk\classes\CBaseEntity.cpp">
+      <Filter>sdk\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\classes\CBasePlayer.cpp">
+      <Filter>sdk\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\sdk.cpp">
+      <Filter>sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\helpers\netvars.cpp">
+      <Filter>sdk\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\helpers\dynamic_module.cpp">
+      <Filter>sdk\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\helpers\CUtlVector.cpp">
+      <Filter>sdk\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\helpers\console.cpp">
+      <Filter>sdk\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\classes\CBasePlayerWeapon.cpp">
+      <Filter>sdk\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\hooking\minhook\hde\hde32.c">
+      <Filter>sdk\hooking\minhook\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\hooking\minhook\hde\hde64.c">
+      <Filter>sdk\hooking\minhook\hde</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\hooking\minhook\buffer.c">
+      <Filter>sdk\hooking\minhook</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\hooking\minhook\hook.c">
+      <Filter>sdk\hooking\minhook</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\hooking\minhook\trampoline.c">
+      <Filter>sdk\hooking\minhook</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\functions\OnAddEntity.cpp">
+      <Filter>hooks\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\hooks.cpp">
+      <Filter>hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\helpers\CUtlMap.cpp">
+      <Filter>sdk\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\helpers\CUtlMemory.cpp">
+      <Filter>sdk\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\math\Vector.cpp">
+      <Filter>sdk\math</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\helpers\modules.cpp">
+      <Filter>sdk\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\classes\CCSPlayerPawn.cpp">
+      <Filter>sdk\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\functions\CreateMove.cpp">
+      <Filter>hooks\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\functions\FrameStageNotify.cpp">
+      <Filter>hooks\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\functions\OnRemoveEntity.cpp">
+      <Filter>hooks\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_demo.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_draw.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\backends\imgui_impl_dx11.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_tables.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="thirdparty\imgui\imgui_widgets.cpp">
+      <Filter>thirdparty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="render\menu\main_window.cpp">
+      <Filter>menu</Filter>
+    </ClCompile>
+    <ClCompile Include="settings\settings.cpp">
+      <Filter>settings</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\functions\Present.cpp">
+      <Filter>hooks\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="hooks\functions\WinProc.cpp">
+      <Filter>hooks\functions</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\helpers\entity_data.cpp">
+      <Filter>sdk\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="features\visuals\visuals.cpp" />
+    <ClCompile Include="sdk\classes\CStrongHandle.h" />
+    <ClCompile Include="thirdparty\imgui\imgui_freetype.cpp" />
+  </ItemGroup>
+</Project>
