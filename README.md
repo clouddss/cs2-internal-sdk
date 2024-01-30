@@ -1,3 +1,7 @@
-Join the journey😁
+Releasing this because we stopped working on this.
+Will do some updates time to time if I see good feedback.
 
-Start date: 25.01.2024
+Features:
+Proper entity data caching
+0 fps drops for esp (bone esp for example)
+Simple ESP
