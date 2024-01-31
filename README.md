@@ -1,4 +1,4 @@
-# Cloud Internal https://discord.gg/9xmxvpcnts
+# https://discord.gg/9xmxvpcnts
 
 # Features
 - Proper entity data caching               
