@@ -3,11 +3,11 @@ Will do some updates time to time if I see good feedback.
 
 Features:
 Proper entity data caching
-
 0 fps drops for esp (bone esp for example)
-
-Simple ESP
-
+Simple ESP (box & name & health)
 Simple ImGui rendering
-
 Simple FOV changer with slider in menu to show a hooking example
+
+TODO:
+
+ComputeBox
