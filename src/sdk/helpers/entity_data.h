@@ -38,6 +38,8 @@ namespace entity_data
 	};
 
 	extern std::list<instance_t> player_instances;
+	extern CBasePlayer* local_player_pawn;
+	extern CCSPlayerController* local_player_controller;
 	extern std::list<instance_t> entity_instances;
 	extern std::list<entry_data_t> player_entry_data;
 

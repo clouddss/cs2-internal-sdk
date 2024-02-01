@@ -12,6 +12,9 @@ void print_status(const char* name, void* ptr)
 namespace sdk
 {
 	inline ID3D11Device* device;
+	bool sub_tick;
+	CUserCmd* user_cmd;
+	CBaseUserCmd* base_user_cmd;
 	inline ID3D11DeviceContext* context;
 	inline ID3D11RenderTargetView* render_target_view;
 

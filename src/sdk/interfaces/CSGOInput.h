@@ -30,176 +30,188 @@ enum ECommandButtons {
 	IN_JUMP_THROW_RELEASE = 0x800000000,
 };
 
-class CMsgQAngle
+template <typename T>
+struct repeated_ptr_field_t
 {
-	void* __vfptr; //0x0000
-	char pad_0008[16]; //0x0008
-public:
-	float pitch; //0x0018
-	float yaw; //0x001C
-	float roll; //0x0020
-private:
-	char pad_0024[28]; //0x0024
-}; //Size: 0x0040
+	struct repeat_t
+	{
+		int m_alloc_size;
+		T* m_elements[(INT_MAX - 2 * sizeof(int)) / sizeof(void*)];
+	};
 
-
-class CInButtonStatePB
-{
-	void* __vfptr; //0x0000
-	char pad_0008[16]; //0x0008
-public:
-	uint64_t buttonstate1; //0x0018
-	uint64_t buttonstate2; //0x0020
-	uint64_t buttonstate3; //0x0028
-}; //Size: 0x0030
-
-class CSGOInputHistory
-{
-public:
-	void* __vfptr; //0x0000
-	char pad_0008[16]; //0x0008
-	CMsgQAngle* viewangles; //0x0018
-	char pad_0020[32]; //0x0020
-	void* cl_interp; //0x0040
-	void* sv_interp0; //0x0048
-	void* sv_interp1; //0x0050
-	void* player_interp; //0x0058
-	int render_tick_count; //0x0060
-	float render_tick_fraction; //0x0064
-	int player_tick_count; //0x0068
-	float player_tick_fraction; //0x006C
-	char pad_0070[8]; //0x0070
-}; //Size: 0x0078
-
-class CSubtickMoveStep {
-	void* __vfptr;
-	char pad_0008[16]; //0x0008
-public:
-	uint32_t button;
-	bool pressed;
-	float when;
+	void* m_arena;
+	int m_current_size;
+	int m_total_size;
+	repeat_t* m_repeat;
 };
 
-template <class T, int MAX_CAPACITY>
-class RepFieldContainer {
-	int count_;
-	int max_;
-	struct InnerContainer {
-		int count_; //0x0000
-		int max_; //0x0004
-		T* elements_[MAX_CAPACITY]; //0x0008
-	}*elements_;
+class c_msg_qangle
+{
 public:
-	inline int size() const {
-		return count_;
-	}
+	std::uint8_t padding_1[0x18]{ };
+	Vector m_view_angles; // 0x18
+};
 
-	inline int max_size() const {
-		return max_;
-	}
+class c_msg_vector
+{
+public:
+	std::uint8_t padding_1[0x18]{ };
+	Vector m_view_angles; // 0x18
+};
 
-	inline T* operator[](int i) {
-		if (i >= max_size())
-			return nullptr;
+class c_csgo_interpolation_info
+{
+public:
+	std::uint8_t padding_1[0x18]{ };
+	float m_fraction; // 0x18
+	int m_src_tick; // 0x1C
+	int m_dst_tick; // 0x20
+};
 
-		return elements_->elements_[i];
-	}
+class c_csgo_input_history_entry_pb
+{
+public:
+	std::uint8_t padding_1[0x18]{ };
+	c_msg_qangle* m_view_cmd; // 0x18
+	c_msg_vector* m_shoot_origin_cmd; // 0x20
+	c_msg_vector* m_target_head_origin_cmd; // 0x28
+	c_msg_vector* m_target_abs_origin_cmd; // 0x30
+	c_msg_qangle* m_target_view_cmd; // 0x38
+	c_csgo_interpolation_info* cl_interp; // 0x40
+	c_csgo_interpolation_info* sv_interp0; // 0x48
+	c_csgo_interpolation_info* sv_interp1; // 0x50	
+	c_csgo_interpolation_info* m_player_interp; // 0x58
+	int m_render_tick_count; // 0x60
+	float m_render_tick_fraction; // 0x64
+	int m_player_tick_count; // 0x68
+	float m_player_tick_fraction; // 0x6C
+	int m_frame_number; // 0x70
+	int m_target_ent_index; // 0x74
+};
 
-	inline operator bool() {
-		return elements_ != nullptr;
-	}
-}; //Size: 0x0028
+struct c_subtick_move_step
+{
+	std::uint8_t padding_1[0x18]{ };
+	uint64_t nButton;
+	bool bPressed;
+	float flWhen;
+};
+
+struct c_in_button_state_pb
+{
+	std::uint8_t padding_1[0x18]{ };
+	std::uint64_t m_hold;
+	std::uint64_t m_pressed;
+	std::uint64_t m_scrolled;
+};
 
 class CBaseUserCmd
 {
-	void* __vfptr; //0x0000
-	char pad_0008[16]; //0x0008
-	uint64_t N000000CB; //0x0018
-
 public:
-	RepFieldContainer<CSubtickMoveStep, 12> subticks; //0x0028
-	int8_t* move_crc; //0x0030
-	CInButtonStatePB* buttons_pb; //0x0038
-	CMsgQAngle* viewangles; //0x0040
-	int command_number; //0x0048
-	int tickcount; //0x004C
-	float forwardmove; //0x0050 from -1 to 1
-	float leftmove; //0x0054 from -1 to 1
-	float upmove; //0x0058 from -1 to 1
-	int impulse; //0x005C
-	int weapon_select; //0x0060
-	int random_seed; //0x0064
-	int mousedx; //0x0068
-	int mousedy; //0x006C
-	bool hasbeenpredicted; //0x0070
-	uint32_t consumed_server_angle_changes; //0x0071
-	int cmd_flags; //0x0075
-	uint32_t pawn_entity_handle; //0x0079
-	char pad_007D[3]; //0x007D
-}; //Size: 0x0078
+	std::uint8_t padding_1[0x18]{ };
+	repeated_ptr_field_t<c_subtick_move_step> m_subtick_moves_field;
+	const char* m_move_crc;
+	c_in_button_state_pb* m_in_button_state;
+	c_msg_qangle* m_view;
+	int32_t m_command_number;
+	int32_t m_tick_count;
+	float m_forward_move;
+	float m_side_move;
+	float m_up_move;
+	int32_t m_impulse;
+	int32_t m_weapon_select;
+	int32_t m_random_seed;
+	int32_t m_moused_x;
+	int32_t m_moused_y;
+	bool m_has_been_predicted;
+	uint32_t m_consumed_server_angle_changes;
+	int32_t m_cmd_flags;
+	uint32_t m_pawn_entity_handle;
+};
 
+struct c_in_button_state
+{
+	void* m_vtable;
+	std::uint64_t m_hold;
+	std::uint64_t m_pressed;
+	std::uint64_t m_scrolled;
+};
 
+class c_sub_tick_container
+{
+public:
+	std::int32_t tick_count;
+	std::uint8_t padding_1[0x4]{ };
+	std::uintptr_t tick_pointer;
+
+	c_csgo_input_history_entry_pb* get_tick(std::int32_t i)
+	{
+		if (i < this->tick_count)
+		{
+			c_csgo_input_history_entry_pb** tick_list = reinterpret_cast<c_csgo_input_history_entry_pb**>(this->tick_pointer + 0x8);
+			return tick_list[i];
+		}
+
+		return nullptr;
+	}
+};
 
 class CUserCmd
 {
 public:
-	void* __vfptr; //0x0000
-	char pad_0008[8]; //0x0008
-	uint32_t cm_flag; //0x0010 some creamove flag, always 1
-	char pad_0014[12]; //0x0014
-	RepFieldContainer<CSGOInputHistory, 4> input_history; //0x0028
-	CBaseUserCmd* base_cmd; //0x0030
-	char pad_0038[24]; //0x0038
-	void* button_state; //0x0050
-	uint32_t buttons; //0x0058
-	char pad_005C[68]; //0x005C
-}; //Size: 0x00A0
+	void* m_vtable;
+	uint32_t m_has_bits;
+	uint64_t m_cached_size;
+	repeated_ptr_field_t<c_csgo_input_history_entry_pb> m_input_history_field;
+	CBaseUserCmd* m_base_cmd;
+	int32_t m_weapon_decision;
+	int32_t m_weapon_decision_weapon;
+	int32_t m_attack3_start_history_index;
+	int32_t m_attack1_start_history_index;
+	int32_t m_attack2_start_history_index;
+	c_in_button_state m_button_state;
+	std::uint8_t padding_1[48]{ };
 
+	c_sub_tick_container get_sub_tick_container()
+	{
+		return *reinterpret_cast<c_sub_tick_container*>(reinterpret_cast<std::uintptr_t>(this) + 0x20);
+	}
+
+	void set_sub_tick_angles(Vector& angles)
+	{
+		c_sub_tick_container container = this->get_sub_tick_container();
+		for (std::int32_t i = 0; i < container.tick_count; i++)
+		{
+			c_csgo_input_history_entry_pb* tick = container.get_tick(i);
+
+			if (tick && tick->m_view_cmd)
+			{
+				tick->m_view_cmd->m_view_angles = angles;
+			}
+		}
+	}
+};
 
 class CSGOInput {
-	void** __vfptr;
-	char pad_0008[24584]; //0x0008
 public:
+	char pad_0000[12352]; //0x0000
+	CUserCmd CommandArr[150]; //0x3040
+	char pad_8E00[1]; //0x8E00
+	bool m_bInThirdPerson; //0x8E01
+	char pad_8E02[6]; //0x8E02
+	Vector m_CameraAngles; //0x8E08
+	char pad_8E14[16]; //0x8E14
+	int32_t m_SequenceNumber; //0x8E24
+	int32_t m_PreviousSequenceNumber; //0x8E28
 
-	bool bBlockShoot; //0x6010
-	bool bInThirdperson; //0x6011
-	char pad_6012[2]; //0x6012
-	bool bOrthographicCamera; //0x6014
-	char pad_6015[3]; //0x6015
-	Vector vecThirdpersonAngles; //0x6018
-	char pad_6024[16]; //0x6024
-	int nSequenceNumber; //0x6034
-	char pad_6038[16]; //0x6038
-	uint32_t nButtons; //0x6048
-	char pad_604C[20]; //0x604C
-	uint32_t nButtons2; //0x6060
-	char pad_6064[4]; //0x6064
-	float forwardmove; //0x6068
-	float leftmove; //0x606C
-	float upmove; //0x6070
-	int mousedx; //0x6074
-	int mousedy; //0x6078
-	int subtick_movesteps_count; //0x607C
-	uint32_t nLastButtonPressed; //0x6080
-	char pad_6084[188]; //0x6084
-	Vector vecViewAngles; //0x6140
-	char pad_614C[200]; //0x614C
-	int N00000BF8; //0x6214
-	bool N00001078; //0x6218
-	char pad_6219[30]; //0x6219
-	bool bMouseInputEnabled; //0x6237
-	bool bHoldingLeftButton; //0x6238
-	bool bHoldingRightButton; //0x6239
-	char pad_623A[86]; //0x623A
-
-	CUserCmd* GetUserCmd(int seq = -1)
+	CUserCmd* GetUserCmd()
 	{
-		if (seq == -1)
-			seq = nSequenceNumber;
+		return &CommandArr[m_SequenceNumber % 150];
+	}
 
-		CUserCmd* cmd_arr = reinterpret_cast<CUserCmd*>(reinterpret_cast<uintptr_t>(this) + 0x250);
-
-		return &cmd_arr[seq % MULTIPLAYER_BACKUP];
+	CUserCmd* GetPreviousCmd()
+	{
+		return &CommandArr[m_PreviousSequenceNumber % 150];
 	}
 
 	static CSGOInput* get()

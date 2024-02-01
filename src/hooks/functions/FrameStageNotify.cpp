@@ -19,6 +19,23 @@ void __fastcall hooks::frame_stage_notify::hooked(void* a1, int stage)
 	case FRAME_NET_UPDATE_POSTDATAUPDATE_START:
 		break;
 	case FRAME_NET_UPDATE_POSTDATAUPDATE_END:
+		for (auto i = 1; i < 32; i++) {
+			auto controller = g::entity_system->GetEntityController(i);
+
+			if (!controller)
+				return;
+
+			static auto pawn = g::entity_system->GetPlayerPawn(controller);
+
+			if (!pawn)
+				return;
+
+			if (controller->m_bIsLocalPlayerController()) {
+				entity_data::local_player_pawn = pawn;
+				entity_data::local_player_controller = controller;
+				break;
+			}
+		}
 		break;
 
 	case FRAME_NET_UPDATE_END:

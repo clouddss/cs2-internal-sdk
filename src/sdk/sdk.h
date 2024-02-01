@@ -17,9 +17,15 @@
 
 #include "../sdk/math/Viewmatrix.h"
 
+class CUserCmd;
+class CBaseUserCmd;
+
 namespace sdk
 {
 	extern bool can_unhook;
+	extern bool sub_tick;
+	extern CUserCmd* user_cmd;
+	extern CBaseUserCmd* base_user_cmd;
 
 	void init_modules();
 
