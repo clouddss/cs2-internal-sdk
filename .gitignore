@@ -18,3 +18,5 @@
 *.ifc
 *.json
 *.idb
+build/Debug/std.ixx.ifc.dt.module.json.command
+*.command

@@ -157,6 +157,7 @@
     <ClCompile Include="features\visuals\visuals.cpp" />
     <ClCompile Include="hooks\functions\Present.cpp" />
     <ClCompile Include="hooks\functions\WinProc.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="sdk\classes\CStrongHandle.h" />
     <ClCompile Include="sdk\helpers\entity_data.cpp" />
     <ClCompile Include="render\menu\main_window.cpp" />
