@@ -8,6 +8,8 @@ namespace entity_data
 {
 	std::list<instance_t> player_instances;
 	std::list<instance_t> entity_instances;
+	CBasePlayer* local_player_pawn = nullptr;
+	CCSPlayerController* local_player_controller = nullptr;
 	std::list<entry_data_t> player_entry_data;
 
 	std::mutex locker;

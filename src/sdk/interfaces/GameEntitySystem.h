@@ -6,6 +6,9 @@
 #include <WinDNS.h>
 //#include "../classes/CHandle.h"
 
+class CCSPlayerController;
+class CBasePlayer;
+
 class CGameEntitySystem
 {
 public:
@@ -33,6 +36,20 @@ public:
 			printf("entity_index: %d\n", entity_index);*/
 
 		return reinterpret_cast<CBaseEntity*>(entity);
+	}
+
+	CCSPlayerController* GetEntityController(int index)
+	{
+		static auto func = reinterpret_cast<CCSPlayerController * (__fastcall*)(CGameEntitySystem*, __int64 index)>(modules::client.pattern_scanner.scan("81 FA FE 7F 00 00 77 36").as());
+
+		return func(this, index);
+	}
+
+	CBasePlayer* GetPlayerPawn(CCSPlayerController* controlller)
+	{
+		static auto func = reinterpret_cast<CBasePlayer * (__fastcall*)(CCSPlayerController*)>(modules::client.pattern_scanner.scan("8B 91 0C 06 00 00 83 FA FF 74 3F").as());
+
+		return func(controlller);
 	}
 
 	/*CBaseEntity* GetBaseEntity(int index)
