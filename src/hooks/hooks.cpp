@@ -32,9 +32,20 @@ bool hooks::init()
 	if (MH_CreateHook(modules::client.pattern_scanner.scan("40 53 48 81 EC ? ? ? ? 49 8B C1").as(), get_matrices_for_view::hooked, reinterpret_cast<void**>(&get_matrices_for_view::original_fn)) != MH_STATUS::MH_OK)
 		return false;
 
+	if (MH_CreateHook(modules::client.pattern_scanner.scan("40 53 48 83 EC ? 48 8B D9 E8 ? ? ? ? 48 85 C0 0F 85").as(), should_draw_player::hooked, reinterpret_cast<void**>(&should_draw_player::original_fn)) != MH_STATUS::MH_OK)
+		return false;
+
 	MH_EnableHook(MH_ALL_HOOKS);
 
 	return true;
+}
+
+bool __fastcall hooks::should_draw_player::hooked(void* player_pawn)
+{
+	if (!g::engine_client->IsInGame() || g::csgo_input->m_bInThirdPerson || player_pawn != entity_data::local_player_pawn)
+		return original_fn(player_pawn);
+
+	return false;
 }
 
 bool hooks::detach()
@@ -88,4 +99,3 @@ long __stdcall hooks::resize_buffers::hooked(IDXGISwapChain* swap_chain, uint32_
 
 	return hr;
 }
-

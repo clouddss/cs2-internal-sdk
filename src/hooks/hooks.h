@@ -53,6 +53,14 @@ namespace hooks
 		LRESULT __stdcall hooked(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
 	}
 
+	struct should_draw_player
+	{
+		using fn = bool(__fastcall*)(void*);
+		static bool __fastcall hooked(void* player_pawn);
+
+		inline static fn original_fn;
+	};
+
 	struct create_move
 	{
 		static const int index = 5;
