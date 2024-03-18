@@ -38,7 +38,7 @@ namespace sdk
 class CRenderSystem
 {
 public:
-	std::byte pad001[0x178];
+	std::byte pad001[0x170];
 	IDXGISwapChain* swap_chain;
 };
 
