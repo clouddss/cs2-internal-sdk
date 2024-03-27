@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <stdint.h>
 #include "../math/Vector.h"
+#include "../helpers/modules.h"
 
 #define MULTIPLAYER_BACKUP 150
 
@@ -48,35 +49,29 @@ struct repeated_ptr_field_t
 class c_msg_qangle
 {
 public:
-	std::uint8_t padding_1[0x18]{ };
+	std::uint8_t pad_1[ 24 ]; //0x0000
 	Vector m_view_angles; // 0x18
 };
-
-class c_msg_vector
-{
-public:
-	std::uint8_t padding_1[0x18]{ };
-	Vector m_view_angles; // 0x18
-};
+static_assert( sizeof( c_msg_qangle ) == 0x24 );
 
 class c_csgo_interpolation_info
 {
 public:
-	std::uint8_t padding_1[0x18]{ };
+	char pad_0000[ 24 ]; //0x0000
 	float m_fraction; // 0x18
 	int m_src_tick; // 0x1C
 	int m_dst_tick; // 0x20
+	char pad_0024[ 12 ]; //0x0024
+	c_msg_qangle entiy_view_angles; //0x0030
 };
+static_assert( sizeof( c_csgo_interpolation_info ) == 0x54 );
 
 class c_csgo_input_history_entry_pb
 {
 public:
 	std::uint8_t padding_1[0x18]{ };
 	c_msg_qangle* m_view_cmd; // 0x18
-	c_msg_vector* m_shoot_origin_cmd; // 0x20
-	c_msg_vector* m_target_head_origin_cmd; // 0x28
-	c_msg_vector* m_target_abs_origin_cmd; // 0x30
-	c_msg_qangle* m_target_view_cmd; // 0x38
+	char pad_0020[ 32 ]; //0x0020
 	c_csgo_interpolation_info* cl_interp; // 0x40
 	c_csgo_interpolation_info* sv_interp0; // 0x48
 	c_csgo_interpolation_info* sv_interp1; // 0x50	
@@ -87,28 +82,31 @@ public:
 	float m_player_tick_fraction; // 0x6C
 	int m_frame_number; // 0x70
 	int m_target_ent_index; // 0x74
+	int32_t idk; //0x0078
+	int32_t idk1; //0x007C
 };
+static_assert( sizeof( c_csgo_input_history_entry_pb ) == 0x80 );
 
 struct c_subtick_move_step
 {
 	std::uint8_t padding_1[0x18]{ };
-	uint64_t nButton;
-	bool bPressed;
-	float flWhen;
+	uint64_t m_button;
+	bool m_pressed;
+	float m_when;
 };
 
 struct c_in_button_state_pb
 {
-	std::uint8_t padding_1[0x18]{ };
+	char pad_0000[ 24 ]; //0x0000
 	std::uint64_t m_hold;
 	std::uint64_t m_pressed;
 	std::uint64_t m_scrolled;
 };
+static_assert( sizeof( c_in_button_state_pb ) == 0x30 );
 
-class CBaseUserCmd
+class c_base_usercmd
 {
 public:
-	std::uint8_t padding_1[0x18]{ };
 	repeated_ptr_field_t<c_subtick_move_step> m_subtick_moves_field;
 	const char* m_move_crc;
 	c_in_button_state_pb* m_in_button_state;
@@ -123,7 +121,6 @@ public:
 	int32_t m_random_seed;
 	int32_t m_moused_x;
 	int32_t m_moused_y;
-	bool m_has_been_predicted;
 	uint32_t m_consumed_server_angle_changes;
 	int32_t m_cmd_flags;
 	uint32_t m_pawn_entity_handle;
@@ -131,7 +128,7 @@ public:
 
 struct c_in_button_state
 {
-	void* m_vtable;
+	char pad_0000[ 8 ]; //0x0000
 	std::uint64_t m_hold;
 	std::uint64_t m_pressed;
 	std::uint64_t m_scrolled;
@@ -141,7 +138,7 @@ class c_sub_tick_container
 {
 public:
 	std::int32_t tick_count;
-	std::uint8_t padding_1[0x4]{ };
+	char pad_0004[ 4 ]; //0x0004
 	std::uintptr_t tick_pointer;
 
 	c_csgo_input_history_entry_pb* get_tick(std::int32_t i)
@@ -156,21 +153,22 @@ public:
 	}
 };
 
-class CUserCmd
+class c_usercmd
 {
 public:
-	void* m_vtable;
 	uint32_t m_has_bits;
 	uint64_t m_cached_size;
 	repeated_ptr_field_t<c_csgo_input_history_entry_pb> m_input_history_field;
-	CBaseUserCmd* m_base_cmd;
+	c_base_usercmd* m_base_cmd;
 	int32_t m_weapon_decision;
 	int32_t m_weapon_decision_weapon;
 	int32_t m_attack3_start_history_index;
 	int32_t m_attack1_start_history_index;
 	int32_t m_attack2_start_history_index;
 	c_in_button_state m_button_state;
-	std::uint8_t padding_1[48]{ };
+	char pad_0068[ 8 ]; //0x0068
+	double some_time; //0x0070
+	char pad_0078[ 16 ]; //0x0078
 
 	c_sub_tick_container get_sub_tick_container()
 	{
@@ -192,33 +190,36 @@ public:
 	}
 };
 
-class CSGOInput {
+class c_csgo_input {
 public:
-	char pad_0000[12352]; //0x0000
-	CUserCmd CommandArr[150]; //0x3040
-	char pad_8E00[1]; //0x8E00
-	bool m_bInThirdPerson; //0x8E01
-	char pad_8E02[6]; //0x8E02
-	Vector m_CameraAngles; //0x8E08
-	char pad_8E14[16]; //0x8E14
-	int32_t m_SequenceNumber; //0x8E24
-	int32_t m_PreviousSequenceNumber; //0x8E28
+	char pad_0000[ 592 ]; //0x0000
+	c_usercmd m_commands[150]; //0x3040
+	char pad_5200[ 1 ]; //0x5200
+	bool m_in_thirdperson; //0x8E01
+	char pad_5202[ 34 ]; //0x5202
+	int32_t m_seq_number; //0x8E24
+	int32_t m_prev_seq_number; //0x8E28
+	char pad_522C[ 56 ]; //0x522C
+	int32_t m_mousedx; //0x5264
+	int32_t m_mousedy; //0x5268
+	char pad_526C[ 292 ]; //0x526C
+	Vector m_viewangles; //0x5390
 
-	CUserCmd* GetUserCmd()
+	c_usercmd* get_usercmd()
 	{
-		return &CommandArr[m_SequenceNumber % 150];
+		return &m_commands[m_seq_number % 150];
 	}
 
-	CUserCmd* GetPreviousCmd()
+	c_usercmd* get_prev_cmd()
 	{
-		return &CommandArr[m_PreviousSequenceNumber % 150];
+		return &m_commands[m_prev_seq_number % 150];
 	}
 
-	static CSGOInput* get()
+	static c_csgo_input* get()
 	{
-		static auto addr = modules::client.pattern_scanner.scan("E8 ? ? ? ? 48 8B 56 60").add(0x1).abs().as<void*>();
+		static auto addr = modules::client.pattern_scanner.scan( "E8 ? ? ? ? 48 8B 56 60" ).add( 0x1 ).abs( ).as<void*>( );
 
-		const auto& get_input = reinterpret_cast<CSGOInput * (__thiscall*)()>(addr);
+		const auto& get_input = reinterpret_cast<c_csgo_input * (__thiscall*)()>(addr);
 
 		if (get_input)
 			return get_input();

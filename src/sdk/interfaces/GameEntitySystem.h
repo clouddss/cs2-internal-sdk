@@ -47,7 +47,7 @@ public:
 
 	CBasePlayer* GetPlayerPawn(CCSPlayerController* controlller)
 	{
-		static auto func = reinterpret_cast<CBasePlayer * (__fastcall*)(CCSPlayerController*)>(modules::client.pattern_scanner.scan("8B 91 0C 06 00 00 83 FA FF 74 3F").as());
+		static auto func = reinterpret_cast<CBasePlayer * (__fastcall*)(CCSPlayerController*)>(modules::client.pattern_scanner.scan("81 FA ? ? ? ? 77 3B 8B C2").as());
 
 		return func(controlller);
 	}
