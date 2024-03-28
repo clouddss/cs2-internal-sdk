@@ -104,7 +104,15 @@ struct c_in_button_state_pb
 };
 static_assert( sizeof( c_in_button_state_pb ) == 0x30 );
 
-class c_base_usercmd
+class c_valve_proto
+{
+public:
+	void* __vfptr;
+	uint64_t m_has_bits;
+	uint64_t m_cached_bits;
+}
+
+class c_base_usercmd : c_valve_proto
 {
 public:
 	repeated_ptr_field_t<c_subtick_move_step> m_subtick_moves_field;
