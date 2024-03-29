@@ -131,7 +131,7 @@ std::vector<T> CUtlTSHash<T, Keytype>::GetElements(void)
     const int n_count = Count();
     auto n_index = 0;
     auto& unallocated_data = m_buckets_.m_unallocated_data;
-    for (auto element = unallocated_data; element; element = element->m_next_) 
+    for (auto element = unallocated_data; element == nullptr; element = element->m_next_) 
     {
         for (auto i = 0; i < BlockSize() && i != n_count; i++) 
         {
