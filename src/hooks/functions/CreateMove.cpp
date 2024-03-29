@@ -6,7 +6,7 @@
 
 
 
-void __fastcall hooks::create_move::hooked(CSGOInput* input, int slot, bool unk, bool sub_tick)
+void __fastcall hooks::create_move::hooked(c_csgo_input* input, int slot, bool unk, bool sub_tick)
 {
     sdk::sub_tick = sub_tick;
     sdk::user_cmd = input->get_usercmd();

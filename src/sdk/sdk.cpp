@@ -13,8 +13,8 @@ namespace sdk
 {
 	inline ID3D11Device* device;
 	bool sub_tick;
-	CUserCmd* user_cmd;
-	CBaseUserCmd* base_user_cmd;
+	c_usercmd* user_cmd;
+	c_base_usercmd* base_user_cmd;
 	inline ID3D11DeviceContext* context;
 	inline ID3D11RenderTargetView* render_target_view;
 
@@ -100,7 +100,7 @@ namespace interfaces
 	IMemAlloc* mem_alloc{};
 	CGameResourceService* game_resource_service{};
 	CGameEntitySystem* entity_system{};
-	CSGOInput* csgo_input{};
+	c_csgo_input* csgo_input{};
 	CRenderSystem* render_system{};
 	IDXGISwapChain* swap_chain{};
 }

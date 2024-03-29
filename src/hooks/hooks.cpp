@@ -42,7 +42,7 @@ bool hooks::init()
 
 bool __fastcall hooks::should_draw_player::hooked(void* player_pawn)
 {
-	if (!g::engine_client->IsInGame() || g::csgo_input->m_bInThirdPerson || player_pawn != entity_data::local_player_pawn)
+	if (!g::engine_client->IsInGame() || g::csgo_input->m_in_thirdperson || player_pawn != entity_data::local_player_pawn)
 		return original_fn(player_pawn);
 
 	return false;

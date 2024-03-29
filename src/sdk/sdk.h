@@ -17,15 +17,15 @@
 
 #include "../sdk/math/Viewmatrix.h"
 
-class CUserCmd;
-class CBaseUserCmd;
+class c_usercmd;
+class c_base_usercmd;
 
 namespace sdk
 {
 	extern bool can_unhook;
 	extern bool sub_tick;
-	extern CUserCmd* user_cmd;
-	extern CBaseUserCmd* base_user_cmd;
+	extern c_usercmd* user_cmd;
+	extern c_base_usercmd* base_user_cmd;
 
 	void init_modules();
 
@@ -49,7 +49,7 @@ namespace interfaces
 	extern IMemAlloc* mem_alloc;
 	extern CGameResourceService* game_resource_service;
 	extern CGameEntitySystem* entity_system;
-	extern CSGOInput* csgo_input;
+	extern c_csgo_input* csgo_input;
 	extern CRenderSystem* render_system;
 	extern IDXGISwapChain* swap_chain;
 }

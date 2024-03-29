@@ -64,8 +64,8 @@ namespace hooks
 	struct create_move
 	{
 		static const int index = 5;
-		using fn = void(__fastcall*)(CSGOInput*, int, bool, bool);
-		static void __fastcall hooked(CSGOInput* input, int slot, bool unk, bool sub_tick);
+		using fn = void(__fastcall*)(c_csgo_input*, int, bool, bool);
+		static void __fastcall hooked( c_csgo_input* input, int slot, bool unk, bool sub_tick);
 
 		inline static fn original_fn;
 	};
