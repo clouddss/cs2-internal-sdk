@@ -119,6 +119,7 @@ public:
     };
 
     CUtlMemoryPool m_entry_memory_;
+    char pad_001[0x40];
     HashBucketT m_buckets_;
     bool m_needs_commit_ = false;
 };
